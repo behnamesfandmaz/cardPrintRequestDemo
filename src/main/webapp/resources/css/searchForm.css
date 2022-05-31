@@ -1,0 +1,32 @@
+form.form-anticlear input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid grey;
+    float: left;
+    height: 40px;
+    width: 20%;
+    background: #f1f1f1;
+}
+
+form.form-anticlear button {
+    float: left;
+    width: 10%;
+    height: 40px;
+    padding: 10px;
+    background: #2196F3;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+form.form-anticlear button:hover {
+    background: #0b7dda;
+}
+
+form.form-anticlear::after {
+    content: "";
+    clear: both;
+    display: table;
+}

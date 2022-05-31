@@ -1,0 +1,21 @@
+server:
+  port: 8080
+logging:
+  file:
+    path: classpath
+    name: cardPrintRequest-logFile.log
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  messages:
+    basename: validation
+
+jwt:
+  header: Authorization
+  secret: nowaysecretkey1401
+
+application:
+  type: nowayProject
+
