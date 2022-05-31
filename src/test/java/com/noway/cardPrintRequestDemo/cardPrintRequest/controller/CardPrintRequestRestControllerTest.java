@@ -72,7 +72,7 @@ class CardPrintRequestRestControllerTest {
     @Test
     void saveCardPrintRequest() throws Exception {
         CardPrintRequestDTO cardPrintRequestDTO = new CardPrintRequestDTO();
-        cardPrintRequestDTO.setCardPan("testCardPan");
+        cardPrintRequestDTO.setCardPan("50222910");
         cardPrintRequestDTO.setIpAddress("10.10.10.10");
         cardPrintRequestDTO.setPersonnelCode("123456");
         cardPrintRequestDTO.setBranchCode("123456");
@@ -87,7 +87,7 @@ class CardPrintRequestRestControllerTest {
                 .andExpect(jsonPath("$.ipAddress").value("10.10.10.10"))
                 .andExpect(jsonPath("$.branchCode").value("123456"))
                 .andExpect(jsonPath("$.personnelCode").value("123456"))
-                .andExpect(jsonPath("$.cardPan").value("test13"))
+                .andExpect(jsonPath("$.cardPan").value("50222910"))
                 .andReturn();
 
     }
@@ -95,7 +95,7 @@ class CardPrintRequestRestControllerTest {
     @Test
     void deleteCardPrintRequestById() throws Exception {
         CardPrintRequestDTO cardPrintRequestDTO = new CardPrintRequestDTO();
-        cardPrintRequestDTO.setCardPan("testCardPan");
+        cardPrintRequestDTO.setCardPan("50222910");
         cardPrintRequestDTO.setIpAddress("10.10.10.10");
         cardPrintRequestDTO.setPersonnelCode("123456");
         cardPrintRequestDTO.setBranchCode("123456");
@@ -123,7 +123,7 @@ class CardPrintRequestRestControllerTest {
         cardPrintRequestWithPagginationResp.setTotalItems(1L);
         List<CardPrintRequestDTO> cardPrintRequestDTOS=new ArrayList<>();
         CardPrintRequestDTO cardPrintRequestDTO=new CardPrintRequestDTO();
-        cardPrintRequestDTO.setCardPan("testCardPan");
+        cardPrintRequestDTO.setCardPan("50222910");
         cardPrintRequestDTO.setIpAddress("10.10.10.10");
         cardPrintRequestDTO.setPersonnelCode("123456");
         cardPrintRequestDTO.setBranchCode("123456");
@@ -187,13 +187,13 @@ class CardPrintRequestRestControllerTest {
     @Test
     void updateCardPrintRequestPut() throws Exception {
         CardPrintRequestDTO cardPrintRequestDTO = new CardPrintRequestDTO();
-        cardPrintRequestDTO.setCardPan("testCardPan");
+        cardPrintRequestDTO.setCardPan("50222910");
         cardPrintRequestDTO.setIpAddress("10.10.10.10");
         cardPrintRequestDTO.setPersonnelCode("123456");
         cardPrintRequestDTO.setBranchCode("123456");
 
         CardPrintRequestDTO cardPrintRequestDTOUpdated = new CardPrintRequestDTO();
-        cardPrintRequestDTOUpdated.setCardPan("testCardPanUpdated");
+        cardPrintRequestDTOUpdated.setCardPan("50222910Updated");
         cardPrintRequestDTOUpdated.setIpAddress("10.10.10.10");
         cardPrintRequestDTOUpdated.setPersonnelCode("123456");
         cardPrintRequestDTOUpdated.setBranchCode("123456");
@@ -210,20 +210,20 @@ class CardPrintRequestRestControllerTest {
                 .andExpect(jsonPath("$.ipAddress").value("10.10.10.10"))
                 .andExpect(jsonPath("$.branchCode").value("123456"))
                 .andExpect(jsonPath("$.personnelCode").value("123456"))
-                .andExpect(jsonPath("$.cardPan").value("testCardPanUpdated"))
+                .andExpect(jsonPath("$.cardPan").value("50222910Updated"))
                 .andReturn();
     }
 
     @Test
     void updateCardPrintRequestPatch() throws Exception {
         CardPrintRequestDTO cardPrintRequestDTO = new CardPrintRequestDTO();
-        cardPrintRequestDTO.setCardPan("testCardPan");
+        cardPrintRequestDTO.setCardPan("50222910");
         cardPrintRequestDTO.setIpAddress("10.10.10.10");
         cardPrintRequestDTO.setPersonnelCode("123456");
         cardPrintRequestDTO.setBranchCode("123456");
 
         CardPrintRequestDTO cardPrintRequestDTOUpdated = new CardPrintRequestDTO();
-        cardPrintRequestDTOUpdated.setCardPan("testCardPanUpdated");
+        cardPrintRequestDTOUpdated.setCardPan("502229101234");
         cardPrintRequestDTOUpdated.setIpAddress("10.10.10.10");
         cardPrintRequestDTOUpdated.setPersonnelCode("123456");
         cardPrintRequestDTOUpdated.setBranchCode("123456");
@@ -240,7 +240,7 @@ class CardPrintRequestRestControllerTest {
                 .andExpect(jsonPath("$.ipAddress").value("10.10.10.10"))
                 .andExpect(jsonPath("$.branchCode").value("123456"))
                 .andExpect(jsonPath("$.personnelCode").value("123456"))
-                .andExpect(jsonPath("$.cardPan").value("testCardPanUpdated"))
+                .andExpect(jsonPath("$.cardPan").value("502229101234"))
                 .andReturn();
     }
 
