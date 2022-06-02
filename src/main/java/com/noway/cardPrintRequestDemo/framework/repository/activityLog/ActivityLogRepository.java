@@ -1,4 +1,4 @@
-package com.noway.cardPrintRequestDemo.framework.repository.loggingAspect;
+package com.noway.cardPrintRequestDemo.framework.repository.activityLog;
 
 import com.noway.cardPrintRequestDemo.framework.entity.activityLog.ActivityLog;
 import com.noway.cardPrintRequestDemo.framework.repository.IGenericRepository;
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Primary
-public interface LoggingAspectRepository extends IGenericRepository<ActivityLog> {
+public interface ActivityLogRepository extends IGenericRepository<ActivityLog> {
 }
