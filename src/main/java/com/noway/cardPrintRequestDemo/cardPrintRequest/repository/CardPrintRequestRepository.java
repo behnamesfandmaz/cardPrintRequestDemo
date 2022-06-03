@@ -17,6 +17,6 @@ public interface CardPrintRequestRepository extends JpaRepository<CardPrintReque
 
     CardPrintRequest findByIdAndUser(CardPrintRequestId cardPrintRequestId, User user);
 
-    Boolean deleteByIdAndUser(CardPrintRequestId cardPrintRequestId, User user);
+    Integer deleteByIdAndUser(CardPrintRequestId cardPrintRequestId, User user);
 
 }

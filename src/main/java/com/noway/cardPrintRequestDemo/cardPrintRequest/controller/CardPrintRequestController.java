@@ -25,7 +25,7 @@ import java.util.Map;
 @SessionAttributes({"cardPrintRequestDTO"})
 public class CardPrintRequestController {
     private static final Logger LOG = Logger.getLogger(CardPrintRequestController.class.getName());
-    protected static final Integer  DEFAULT_PAGE_SIZE = 5;
+    protected static final Integer DEFAULT_PAGE_SIZE = 5;
     protected static final Integer DEFAULT_PAGE_NUM = 1;
 
     @Autowired
@@ -50,7 +50,7 @@ public class CardPrintRequestController {
                 return "save-cardPrintRequest";
             }
             cardPrintRequestService.saveCardPrintRequest(cardPrintRequestDTO);
-            return "redirect:/getAllCardPrintRequest?pageNo=1";
+            return "redirect:/getAllCardPrintRequest?pageNo=1&pageSize=5";
         } catch (Exception e) {
             throw new JspBusinessException(e.getMessage(), e);
         }
@@ -90,7 +90,7 @@ public class CardPrintRequestController {
             requestHeaderLog.printRequestHeaderData(headers);
             LOG.log(Level.INFO, "delete CardPrintRequest By Id");
             cardPrintRequestService.deleteCardPrintRequestById(new CardPrintRequestIdDTO(ipAddress, branchCode));
-            return "redirect:/getAllCardPrintRequest?pageNo=1";
+            return "redirect:/getAllCardPrintRequest?pageNo=1&pageSize=5";
         } catch (Exception e) {
             throw new JspBusinessException(e.getMessage(), e);
         }
@@ -101,7 +101,8 @@ public class CardPrintRequestController {
     @ExcutionTime
     @ApiOperation(value = "show all cardPrintRequest of User", notes = "fetch cardPrintRequest of User.")
     public String getAllCardPrintRequest(
-            @ApiParam(value = "page number of table of data", required = true) @RequestParam(value = "pageNo") Integer pageNo,
+            @ApiParam(value = "page number of table", required = true) @RequestParam(value = "pageNo") Integer pageNo,
+            @ApiParam(value = "page size of table", required = true) @RequestParam(value = "pageSize") Integer pageSize,
             @RequestHeader Map<String, String> headers,
             ModelMap model) {
         try {
@@ -109,7 +110,7 @@ public class CardPrintRequestController {
             LOG.log(Level.INFO, "Get All CardPrintRequest");
             CardPrintRequestWithPagginationResp cardPrintRequestWithPagginationResp = cardPrintRequestService.
                     findAllByPaggination(pageNo != null && !pageNo.equals(0) ? pageNo : DEFAULT_PAGE_NUM,
-                            DEFAULT_PAGE_SIZE);
+                            pageSize != null && !pageSize.equals(0) ? pageSize : DEFAULT_PAGE_SIZE);
 
 
             model.put("cardPrintRequestDTOs", cardPrintRequestWithPagginationResp);
@@ -124,7 +125,8 @@ public class CardPrintRequestController {
     @ApiOperation(value = "show all cardPrintRequest of User", notes = "fetch cardPrintRequest of User.")
     public String getAllCardPrintRequestWithBrachCode(
             @ApiParam(value = "branch Code", required = true) @RequestParam(value = "branchCode") String branchCode,
-            @ApiParam(value = "page number of table of data", required = true) @RequestParam(value = "pageNo") Integer pageNo,
+            @ApiParam(value = "page number of table", required = true) @RequestParam(value = "pageNo") Integer pageNo,
+            @ApiParam(value = "page size of table", required = true) @RequestParam(value = "pageSize") Integer pageSize,
             @RequestHeader Map<String, String> headers,
             ModelMap model) {
         try {
@@ -133,7 +135,7 @@ public class CardPrintRequestController {
             CardPrintRequestWithPagginationResp cardPrintRequestWithPagginationResp = cardPrintRequestService.
                     findByIdBranchCode(branchCode
                             , pageNo != null && !pageNo.equals(0) ? pageNo : DEFAULT_PAGE_NUM
-                            , DEFAULT_PAGE_SIZE);
+                            , pageSize != null && !pageSize.equals(0) ? pageSize : DEFAULT_PAGE_SIZE);
 
 
             model.put("cardPrintRequestDTOs", cardPrintRequestWithPagginationResp);
@@ -179,7 +181,7 @@ public class CardPrintRequestController {
             cardPrintRequestService.updateCardPrintRequest(cardPrintRequestDTO);
 
 
-            return "redirect:/getAllCardPrintRequest?pageNo=1";
+            return "redirect:/getAllCardPrintRequest?pageNo=1&pageSize=5";
         } catch (Exception e) {
             throw new JspBusinessException(e.getMessage(), e);
         }

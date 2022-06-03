@@ -126,7 +126,7 @@ class CardPrintRequestControllerTest {
 
         when(cardPrintRequestService.findAllByPaggination(1,5)).thenReturn(cardPrintRequestWithPagginationResp);
 
-        mockMvc.perform(get("/getAllCardPrintRequest").param("pageNo","1"))
+        mockMvc.perform(get("/getAllCardPrintRequest").param("pageNo","1").param("pageSize","5"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("view-cardPrintRequest"))
                 .andExpect(forwardedUrl("/WEB-INF/jsp/view-cardPrintRequest.jsp"))
@@ -155,7 +155,7 @@ class CardPrintRequestControllerTest {
         when(cardPrintRequestService.findByIdBranchCode(cardPrintRequestDTO.getBranchCode(),1,5)).thenReturn(cardPrintRequestWithPagginationResp);
 
         mockMvc.perform(get("/getAllCardPrintRequestWithBranchCode")
-                .param("branchCode","777890").param("pageNo","1"))
+                .param("branchCode","777890").param("pageNo","1").param("pageSize","5"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("view-cardPrintRequest"))
                 .andExpect(forwardedUrl("/WEB-INF/jsp/view-cardPrintRequest.jsp"))

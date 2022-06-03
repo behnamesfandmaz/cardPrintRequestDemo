@@ -48,7 +48,7 @@ public class CardPrintRequestRestController {
             @RequestHeader Map<String, String> headers) {
         try {
             if (bindingResult.hasErrors()) {
-                List<String> messages=bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
+                List<String> messages = bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
                 throw new BusinessException(messages.toString());
             }
             requestHeaderLog.printRequestHeaderData(headers);
@@ -83,6 +83,7 @@ public class CardPrintRequestRestController {
     @ApiOperation(value = "get all CardPrintRequest of user", notes = "get all cardPrintRequest of User With Paggination")
     public ResponseEntity<CardPrintRequestWithPagginationResp> getAllCardPrintRequest(
             @RequestParam("pageNo") Integer pageNo,
+            @RequestParam("pageSize") Integer pageSize,
             @RequestHeader Map<String, String> headers) {
         try {
             requestHeaderLog.printRequestHeaderData(headers);
@@ -90,7 +91,7 @@ public class CardPrintRequestRestController {
             CardPrintRequestWithPagginationResp cardPrintRequestWithPagginationResp = cardPrintRequestService.
                     findAllByPaggination(
                             pageNo != null && !pageNo.equals(0) ? pageNo : DEFAULT_PAGE_NUM,
-                            DEFAULT_PAGE_SIZE);
+                            pageSize != null && !pageSize.equals(0) ? pageSize : DEFAULT_PAGE_SIZE);
             return new ResponseEntity<>(cardPrintRequestWithPagginationResp, HttpStatus.OK);
         } catch (Exception e) {
             throw new BusinessException(e.getMessage(), e);
@@ -104,6 +105,7 @@ public class CardPrintRequestRestController {
     public ResponseEntity<CardPrintRequestWithPagginationResp> getAllCardPrintRequestWithBrachCode(
             @RequestParam(value = "branchCode") String branchCode,
             @RequestParam("pageNo") Integer pageNo,
+            @RequestParam("pageSize") Integer pageSize,
             @RequestHeader Map<String, String> headers) {
         try {
             requestHeaderLog.printRequestHeaderData(headers);
@@ -112,7 +114,7 @@ public class CardPrintRequestRestController {
                     findByIdBranchCode(
                             branchCode,
                             pageNo != null && !pageNo.equals(0) ? pageNo : DEFAULT_PAGE_NUM,
-                            DEFAULT_PAGE_SIZE);
+                            pageSize != null && !pageSize.equals(0) ? pageSize : DEFAULT_PAGE_SIZE);
             return new ResponseEntity<>(cardPrintRequestWithPagginationResp, HttpStatus.OK);
         } catch (Exception e) {
             throw new BusinessException(e.getMessage(), e);
@@ -130,7 +132,7 @@ public class CardPrintRequestRestController {
             @RequestHeader Map<String, String> headers) {
         try {
             if (bindingResult.hasErrors()) {
-                List<String> messages=bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
+                List<String> messages = bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getDefaultMessage).collect(Collectors.toList());
                 throw new BusinessException(messages.toString());
             }
             requestHeaderLog.printRequestHeaderData(headers);

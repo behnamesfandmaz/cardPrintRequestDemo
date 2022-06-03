@@ -1,9 +1,11 @@
 <script>
     function reloadPage() {
-        location.href = "/getAllCardPrintRequest?pageNo=" + 1;
+        location.href = "/getAllCardPrintRequest?pageNo=" + 1 + "&pageSize=" + 5;
     }
+
     function insertNewCardPrintRequest() {
-        document.getElementById("branchCodeId").value='';
+        document.getElementById("branchCodeId").value = '';
+        document.getElementById("pageSize").value = 5;
         location.href = "/saveCardPrintRequest";
     }
 </script>

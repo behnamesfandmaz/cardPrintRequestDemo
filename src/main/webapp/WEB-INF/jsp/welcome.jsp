@@ -13,7 +13,7 @@
         <form id="logoutForm" method="POST" action="/logout">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>
-        <h2>Welcome ${pageContext.request.userPrincipal.name} <a href="/getAllCardPrintRequest?pageNo=1">Click here</a> to manage your cardPrintRequests.</h2>
+        <h2>Welcome ${pageContext.request.userPrincipal.name} <a href="/getAllCardPrintRequest?pageNo=1&pageSize=5">Click here</a> to manage your cardPrintRequests.</h2>
     </c:if>
 </div>
 </body>

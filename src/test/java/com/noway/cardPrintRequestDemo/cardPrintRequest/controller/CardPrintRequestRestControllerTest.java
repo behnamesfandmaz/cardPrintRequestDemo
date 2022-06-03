@@ -139,6 +139,7 @@ class CardPrintRequestRestControllerTest {
 
         mockMvc.perform(get("/api/v1/getAllCardPrintRequest")
                 .param("pageNo", "1")
+                .param("pageSize","5")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -174,6 +175,7 @@ class CardPrintRequestRestControllerTest {
 
         mockMvc.perform(get("/api/v1/getAllCardPrintRequestWithBranchCode")
                 .param("branchCode","777890").param("pageNo","1")
+                .param("pageSize","5")
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

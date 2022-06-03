@@ -87,7 +87,6 @@ class CardPrintRequestServiceImplTest {
         cardPrintRequestDTO.setUsername("test");
 
         CardPrintRequestDTO serviceData = cardPrintRequestService.saveCardPrintRequest(cardPrintRequestDTO);
-        System.out.println(serviceData.getBranchCode());
         assertEquals("777890", serviceData.getBranchCode());
 
     }
@@ -242,12 +241,12 @@ class CardPrintRequestServiceImplTest {
         cardPrintRequestIdDTO.setBranchCode("777890");
         cardPrintRequestIdDTO.setIpAddress("10.30.20.30");
 
-        when(cardPrintRequestRepository.deleteByIdAndUser(any(),any())).thenReturn(Boolean.TRUE);
+        when(cardPrintRequestRepository.deleteByIdAndUser(any(),any())).thenReturn(1);
 
-        Boolean serviceData=cardPrintRequestService.deleteCardPrintRequestById(cardPrintRequestIdDTO);
+        Integer serviceData=cardPrintRequestService.deleteCardPrintRequestById(cardPrintRequestIdDTO);
 
 
-        assertEquals(Boolean.TRUE,serviceData);
+        assertEquals(1,serviceData);
 
     }
 

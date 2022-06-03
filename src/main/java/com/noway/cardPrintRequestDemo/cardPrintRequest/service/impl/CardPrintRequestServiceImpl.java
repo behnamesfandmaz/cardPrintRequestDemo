@@ -118,7 +118,7 @@ public class CardPrintRequestServiceImpl implements ICardPrintRequestService {
 
     @Transactional
     @Override
-    public Boolean deleteCardPrintRequestById(CardPrintRequestIdDTO cardPrintRequestIdDTO) {
+    public Integer deleteCardPrintRequestById(CardPrintRequestIdDTO cardPrintRequestIdDTO) {
         LOG.info("Call deleteCardPrintRequestById Service");
 
         return cardPrintRequestRepository.deleteByIdAndUser(

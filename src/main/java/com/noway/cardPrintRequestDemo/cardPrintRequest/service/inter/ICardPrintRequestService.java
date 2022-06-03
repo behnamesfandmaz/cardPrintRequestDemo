@@ -4,9 +4,6 @@ import com.noway.cardPrintRequestDemo.cardPrintRequest.customResponse.CardPrintR
 import com.noway.cardPrintRequestDemo.cardPrintRequest.dto.CardPrintRequestDTO;
 import com.noway.cardPrintRequestDemo.cardPrintRequest.dto.CardPrintRequestIdDTO;
 
-
-import java.util.Map;
-
 public interface ICardPrintRequestService {
 
     CardPrintRequestDTO saveCardPrintRequest(CardPrintRequestDTO cardPrintRequestDTO);
@@ -15,7 +12,7 @@ public interface ICardPrintRequestService {
 
     CardPrintRequestDTO findByIdAndUser(CardPrintRequestIdDTO cardPrintRequestIdDTO);
 
-    Boolean deleteCardPrintRequestById(CardPrintRequestIdDTO cardPrintRequestIdDTO);
+    Integer deleteCardPrintRequestById(CardPrintRequestIdDTO cardPrintRequestIdDTO);
 
     CardPrintRequestDTO updateCardPrintRequest(CardPrintRequestDTO cardPrintRequestDTO);
 
