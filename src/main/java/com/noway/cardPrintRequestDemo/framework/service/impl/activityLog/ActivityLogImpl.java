@@ -12,8 +12,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class ActivityLogImpl extends GenericServiceImpl<ActivityLog, ActivityLogDTO> implements IActivityLog {
 
+    private final ActivityLogRepository activityLogRepository;
+
     @Autowired
-    private ActivityLogRepository activityLogRepository;
+    public ActivityLogImpl(ActivityLogRepository activityLogRepository) {
+        this.activityLogRepository = activityLogRepository;
+    }
 
     @Override
     public ActivityLogDTO save(ActivityLogDTO activityLogDTO) {

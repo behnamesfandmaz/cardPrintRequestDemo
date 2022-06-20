@@ -2,9 +2,9 @@ package com.noway.cardPrintRequestDemo.cardPrintRequest.controller;
 
 import com.noway.cardPrintRequestDemo.cardPrintRequest.customResponse.CardPrintRequestWithPagginationResp;
 import com.noway.cardPrintRequestDemo.cardPrintRequest.dto.CardPrintRequestDTO;
-import com.noway.cardPrintRequestDemo.cardPrintRequest.service.impl.CardPrintRequestServiceImpl;
+import com.noway.cardPrintRequestDemo.cardPrintRequest.service.inter.ICardPrintRequestService;
 import com.noway.cardPrintRequestDemo.framework.filter.JwtFilter;
-import com.noway.cardPrintRequestDemo.framework.log.impl.RequestHeaderLogImpl;
+import com.noway.cardPrintRequestDemo.framework.log.inter.IRequestHeaderLog;
 import com.noway.cardPrintRequestDemo.framework.utility.JWTUtility;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +29,8 @@ import java.util.List;
 import static com.noway.cardPrintRequestDemo.cardPrintRequest.controller.CardPrintRequestRestControllerTest.asJsonString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
@@ -39,15 +40,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 class CardPrintRequestControllerTest {
 
-
     @Autowired
     private MockMvc mockMvc;
 
     @MockBean
-    private CardPrintRequestServiceImpl cardPrintRequestService;
+    private ICardPrintRequestService cardPrintRequestService;
 
     @MockBean
-    private RequestHeaderLogImpl requestHeaderLog;
+    private IRequestHeaderLog requestHeaderLog;
 
     @Autowired
     private WebApplicationContext webApplicationContext;

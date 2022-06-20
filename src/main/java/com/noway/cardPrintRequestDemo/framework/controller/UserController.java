@@ -1,8 +1,7 @@
 package com.noway.cardPrintRequestDemo.framework.controller;
 
-import com.noway.cardPrintRequestDemo.cardPrintRequest.controller.CardPrintRequestController;
 import com.noway.cardPrintRequestDemo.framework.dto.user.UserDTO;
-import com.noway.cardPrintRequestDemo.framework.service.impl.user.UserServiceImpl;
+import com.noway.cardPrintRequestDemo.framework.service.inter.user.IUserService;
 import com.noway.cardPrintRequestDemo.framework.validation.userValidation.UserValidator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,15 @@ public class UserController {
 
     private static final Logger LOG = Logger.getLogger(UserController.class.getName());
 
-    @Autowired
-    private UserServiceImpl userService;
+    private final IUserService userService;
+
+    private final UserValidator userValidator;
 
     @Autowired
-    private UserValidator userValidator;
+    public UserController(IUserService userService, UserValidator userValidator) {
+        this.userService = userService;
+        this.userValidator = userValidator;
+    }
 
     @GetMapping("/registration")
     public String registration(ModelMap model) {

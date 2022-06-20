@@ -14,8 +14,12 @@ import java.util.List;
 @Service
 public class ActivityLogElasImpl implements IActivityLogElas {
 
+    private final ActivityLogElasRepository activityLogElasRepository;
+
     @Autowired
-    private ActivityLogElasRepository activityLogElasRepository;
+    public ActivityLogElasImpl(ActivityLogElasRepository activityLogElasRepository) {
+        this.activityLogElasRepository = activityLogElasRepository;
+    }
 
     @Override
     public ActivityLogElas save(ActivityLogElas activityLogElas) {

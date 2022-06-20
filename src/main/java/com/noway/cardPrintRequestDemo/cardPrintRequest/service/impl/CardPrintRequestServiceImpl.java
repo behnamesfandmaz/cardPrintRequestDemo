@@ -7,8 +7,6 @@ import com.noway.cardPrintRequestDemo.cardPrintRequest.entity.cardPrintRequestEn
 import com.noway.cardPrintRequestDemo.cardPrintRequest.entity.cardPrintRequestEntity.CardPrintRequestId;
 import com.noway.cardPrintRequestDemo.cardPrintRequest.repository.CardPrintRequestRepository;
 import com.noway.cardPrintRequestDemo.cardPrintRequest.service.inter.ICardPrintRequestService;
-import com.noway.cardPrintRequestDemo.framework.entity.user.User;
-import com.noway.cardPrintRequestDemo.framework.exception.BusinessException;
 import com.noway.cardPrintRequestDemo.framework.repository.user.UserRepository;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +27,15 @@ public class CardPrintRequestServiceImpl implements ICardPrintRequestService {
 
     private static final Logger LOG = Logger.getLogger(CardPrintRequestServiceImpl.class.getName());
 
-    @Autowired
-    CardPrintRequestRepository cardPrintRequestRepository;
+    private final CardPrintRequestRepository cardPrintRequestRepository;
+
+    private final UserRepository userRepository;
 
     @Autowired
-    UserRepository userRepository;
+    public CardPrintRequestServiceImpl(CardPrintRequestRepository cardPrintRequestRepository, UserRepository userRepository) {
+        this.cardPrintRequestRepository = cardPrintRequestRepository;
+        this.userRepository = userRepository;
+    }
 
     @Transactional
     @Override

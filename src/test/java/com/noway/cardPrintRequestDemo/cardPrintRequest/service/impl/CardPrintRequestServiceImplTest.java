@@ -10,7 +10,7 @@ import com.noway.cardPrintRequestDemo.framework.entity.user.User;
 import com.noway.cardPrintRequestDemo.framework.filter.JwtFilter;
 import com.noway.cardPrintRequestDemo.framework.repository.activityLog.ActivityLogElasRepository;
 import com.noway.cardPrintRequestDemo.framework.repository.user.UserRepository;
-import com.noway.cardPrintRequestDemo.framework.service.impl.activityLog.ActivityLogElasImpl;
+import com.noway.cardPrintRequestDemo.framework.service.inter.activityLog.IActivityLogElas;
 import com.noway.cardPrintRequestDemo.framework.utility.JWTUtility;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,10 +55,10 @@ class CardPrintRequestServiceImplTest {
     private JwtFilter jwtFilter;
 
     @MockBean
-    ActivityLogElasImpl activityLogElas;
+    private IActivityLogElas activityLogElas;
 
     @MockBean
-    ActivityLogElasRepository activityLogElasRepository;
+    private ActivityLogElasRepository activityLogElasRepository;
 
 
 

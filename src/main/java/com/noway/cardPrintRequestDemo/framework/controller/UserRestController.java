@@ -21,14 +21,19 @@ public class UserRestController {
 
     private static final Logger LOG = Logger.getLogger(UserRestController.class.getName());
 
-    @Autowired
-    private JWTUtility jwtUtility;
+    private final JWTUtility jwtUtility;
+
+    private final AuthenticationManager authenticationManager;
+
+    private final UserDetailsServiceImpl userDetailsService;
+
 
     @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    public UserRestController(JWTUtility jwtUtility, AuthenticationManager authenticationManager, UserDetailsServiceImpl userDetailsService) {
+        this.jwtUtility = jwtUtility;
+        this.authenticationManager = authenticationManager;
+        this.userDetailsService = userDetailsService;
+    }
 
 
     @RequestMapping(value = "/authenticate" , method = RequestMethod.POST)

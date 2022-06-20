@@ -3,10 +3,10 @@ package com.noway.cardPrintRequestDemo.cardPrintRequest.controller;
 import com.noway.cardPrintRequestDemo.cardPrintRequest.customResponse.CardPrintRequestWithPagginationResp;
 import com.noway.cardPrintRequestDemo.cardPrintRequest.dto.CardPrintRequestDTO;
 import com.noway.cardPrintRequestDemo.cardPrintRequest.dto.CardPrintRequestIdDTO;
-import com.noway.cardPrintRequestDemo.cardPrintRequest.service.impl.CardPrintRequestServiceImpl;
+import com.noway.cardPrintRequestDemo.cardPrintRequest.service.inter.ICardPrintRequestService;
 import com.noway.cardPrintRequestDemo.framework.exception.BusinessException;
 import com.noway.cardPrintRequestDemo.framework.log.ExcutionTime;
-import com.noway.cardPrintRequestDemo.framework.log.impl.RequestHeaderLogImpl;
+import com.noway.cardPrintRequestDemo.framework.log.inter.IRequestHeaderLog;
 import io.swagger.annotations.ApiOperation;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -30,12 +30,15 @@ public class CardPrintRequestRestController {
     protected static final Integer DEFAULT_PAGE_SIZE = 5;
     protected static final Integer DEFAULT_PAGE_NUM = 1;
 
-    @Autowired
-    CardPrintRequestServiceImpl cardPrintRequestService;
+    private final ICardPrintRequestService cardPrintRequestService;
+    private final IRequestHeaderLog requestHeaderLog;
 
 
     @Autowired
-    RequestHeaderLogImpl requestHeaderLog;
+    public CardPrintRequestRestController(ICardPrintRequestService cardPrintRequestService, IRequestHeaderLog requestHeaderLog) {
+        this.cardPrintRequestService = cardPrintRequestService;
+        this.requestHeaderLog = requestHeaderLog;
+    }
 
     @RequestMapping(value = "/saveCardPrintRequest", method = RequestMethod.POST,
             produces = {"application/json"},

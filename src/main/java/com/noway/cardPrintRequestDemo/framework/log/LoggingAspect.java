@@ -5,9 +5,9 @@ import com.noway.cardPrintRequestDemo.framework.applicationProperties.AppPropert
 import com.noway.cardPrintRequestDemo.framework.dto.activityLog.ActivityLogDTO;
 import com.noway.cardPrintRequestDemo.framework.dto.user.UserDTO;
 import com.noway.cardPrintRequestDemo.framework.entity.activityLog.ActivityLogElas;
-import com.noway.cardPrintRequestDemo.framework.service.impl.activityLog.ActivityLogElasImpl;
-import com.noway.cardPrintRequestDemo.framework.service.impl.activityLog.ActivityLogImpl;
-import com.noway.cardPrintRequestDemo.framework.service.impl.user.UserServiceImpl;
+import com.noway.cardPrintRequestDemo.framework.service.inter.activityLog.IActivityLog;
+import com.noway.cardPrintRequestDemo.framework.service.inter.activityLog.IActivityLogElas;
+import com.noway.cardPrintRequestDemo.framework.service.inter.user.IUserService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -21,7 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Aspect
 @Component
@@ -30,14 +33,18 @@ public class LoggingAspect {
     private static final Logger LOG = LoggerFactory.getLogger(LoggingAspect.class.getName());
 
 
+    private final IActivityLog activityLog;
+    private final IUserService userService;
+    private final AppProperties appProperties;
+    private final IActivityLogElas logElas;
+
     @Autowired
-    ActivityLogImpl activityLogImpl;
-    @Autowired
-    UserServiceImpl userService;
-    @Autowired
-    AppProperties appProperties;
-    @Autowired
-    ActivityLogElasImpl logElas;
+    public LoggingAspect(IActivityLog activityLog, IUserService userService, AppProperties appProperties, IActivityLogElas logElas) {
+        this.activityLog = activityLog;
+        this.userService = userService;
+        this.appProperties = appProperties;
+        this.logElas = logElas;
+    }
 
 
     @Pointcut("within(@org.springframework.stereotype.Repository *)" +
@@ -112,7 +119,7 @@ public class LoggingAspect {
         activityLogDTO.setIssuedDateAndTime(new Date());
         activityLogDTO.setEnabled(true);
 
-        activityLogImpl.save(activityLogDTO);
+        activityLog.save(activityLogDTO);
     }
 
     private void saveActivityLogInElastic(Map<String, Object> argsObject, ProceedingJoinPoint joinPoint) {

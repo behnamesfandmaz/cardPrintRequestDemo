@@ -21,11 +21,15 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 public class SecurityConfigurations {
 
-    @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsServiceImpl userDetailsService;
+
+    private final JwtFilter jwtFilter;
 
     @Autowired
-    private JwtFilter jwtFilter;
+    public SecurityConfigurations(UserDetailsServiceImpl userDetailsService, JwtFilter jwtFilter) {
+        this.userDetailsService = userDetailsService;
+        this.jwtFilter = jwtFilter;
+    }
 
 
     @Configuration
